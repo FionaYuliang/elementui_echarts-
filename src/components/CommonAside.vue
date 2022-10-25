@@ -30,7 +30,7 @@
           v-for="(subItem, subIndex) in item.children"
           :key="subIndex"
         >
-          <i :class="'el-icon-' + item.icon"></i>
+          <i :class="'el-icon-' + subItem.icon"></i>
           <span slot="title"> {{ subItem.label }}</span>
         </el-menu-item>
       </el-menu-item-group>
