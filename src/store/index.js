@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import tab from "../store/tab";
+import tab from "./tag";
 
 Vue.use(Vuex);
 
