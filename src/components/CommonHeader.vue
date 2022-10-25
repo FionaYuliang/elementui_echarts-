@@ -10,7 +10,7 @@
     <div class="right-content">
       <el-dropdown trigger="click" size="mini">
         <span class="el-dropdown-link">
-          <img src="../assets/images/user.png" class="user-avatar"
+          <img :src="userAvatar" class="user-avatar"
         /></span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>个人中心</el-dropdown-item>
@@ -22,7 +22,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      userAvatar: require("../assets/images/user.png"),
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -44,6 +50,20 @@ header {
     width: 40px;
     height: 40px;
     border-radius: 50px;
+  }
+}
+</style>
+
+<style lang="scss">
+.el-breadcrumb__item {
+  .el-breadcrumb__inner {
+    color: #666666;
+    font-weight: normal;
+  }
+  &:last-child {
+    .el-breadcrumb__inner {
+      color: #ffffff;
+    }
   }
 }
 </style>
