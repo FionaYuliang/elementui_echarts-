@@ -6,6 +6,7 @@
       :closable="tag.name !== 'home'"
       :disable-transitions="false"
       @close="handleClose(tag)"
+      @click="changeMenu(tag)"
     >
       {{ tag.label }}
     </el-tag>
@@ -35,6 +36,10 @@ export default {
     }),
     handleClose(tag) {
       this.close(tag);
+    },
+    changeMenu(tag) {
+      this.$router.push({ name: tag.name });
+      this.$store.commit("selectMenu", tag);
     },
   },
 };
