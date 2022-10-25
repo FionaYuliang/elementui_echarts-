@@ -10,6 +10,7 @@
       :index="item.path"
       v-for="item in noChildren"
       :key="item.path"
+      @click="clickMenu(item)"
     >
       <i :class="'el-icon-' + item.icon"></i>
       <span slot="title">{{ item.label }}</span>
@@ -25,6 +26,7 @@
           :index="subItem.path"
           v-for="(subItem, subIndex) in item.children"
           :key="subIndex"
+          @click="clickMenu(subItem)"
         >
           <i :class="'el-icon-' + subItem.icon"></i>
           <span slot="title"> {{ subItem.label }}</span>
@@ -86,7 +88,12 @@ export default {
       ],
     };
   },
-  methods: {},
+  methods: {
+    clickMenu(item) {
+      this.$router.push({ name: item.name });
+      this.$store.commit("selectMenu", item);
+    },
+  },
 };
 </script>
 
