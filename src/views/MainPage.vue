@@ -20,6 +20,9 @@ export default { components: { CommonHeader, CommonAside, CommonTag } };
 </script>
 
 <style lang="scss" scoped>
+.el-container {
+  height: 100vh;
+}
 .el-header {
   background-color: #333;
 }

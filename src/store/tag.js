@@ -1,5 +1,6 @@
 export default {
   state: {
+    isCollapse: true,
     menu: [],
     currentMenu: null,
     tagsList: [
@@ -27,6 +28,9 @@ export default {
     closeTag(state, value) {
       let index = state.tagsList.findIndex((item) => item.name === value.name);
       state.tagsList.splice(index, 1);
+    },
+    clickCollapse(state) {
+      state.isCollapse = !state.isCollapse;
     },
   },
   action: {},

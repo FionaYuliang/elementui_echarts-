@@ -5,6 +5,7 @@
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
+    :collapse="isCollapse"
   >
     <el-menu-item
       :index="item.path"
@@ -44,6 +45,9 @@ export default {
     },
     hasChilren() {
       return this.asideMenu.filter((item) => item.children);
+    },
+    isCollapse() {
+      return this.$store.state.tag.isCollapse;
     },
   },
   data() {

@@ -1,7 +1,12 @@
 <template>
   <header>
     <div class="left-content">
-      <el-button type="primary" size="mini" icon="el-icon-menu"></el-button>
+      <el-button
+        @click="clickCollapse"
+        type="primary"
+        size="mini"
+        icon="el-icon-menu"
+      ></el-button>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="currentMenuItem.path" v-if="currentMenuItem">
@@ -37,6 +42,11 @@ export default {
       //router分模块后，用箭头函数引用
       currentMenuItem: (state) => state.tag.currentMenu,
     }),
+  },
+  methods: {
+    clickCollapse() {
+      this.$store.commit("clickCollapse");
+    },
   },
 };
 </script>

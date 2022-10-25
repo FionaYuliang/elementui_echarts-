@@ -4,6 +4,7 @@
       :key="tag.name"
       v-for="tag in tags"
       :closable="tag.name !== 'home'"
+      :effect="$route.name === tag.name ? 'dark' : 'plain'"
       :disable-transitions="false"
       @close="handleClose(tag)"
       @click="changeMenu(tag)"
