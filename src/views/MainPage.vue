@@ -3,8 +3,7 @@
     <el-aside width="auto"><CommonAside></CommonAside></el-aside>
     <el-container>
       <el-header><CommonHeader></CommonHeader></el-header>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
+      <el-main></el-main>
     </el-container>
   </el-container>
 </template>

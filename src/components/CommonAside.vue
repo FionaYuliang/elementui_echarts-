@@ -94,4 +94,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-menu {
+  height: 100%;
+  border: none;
+  h3 {
+    color: #ffffff;
+    text-align: center;
+    line-height: 48px;
+  }
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+</style>
