@@ -8,4 +8,7 @@
 // #app {
 //   color: $theme-color;
 // }
+#app {
+  height: 100vh;
+}
 </style>
