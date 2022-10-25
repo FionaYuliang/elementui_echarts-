@@ -3,7 +3,7 @@
     <el-tag
       :key="tag.name"
       v-for="tag in tags"
-      closable
+      :closable="tag.name !== 'home'"
       :disable-transitions="false"
       @close="handleClose(tag)"
     >
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   data() {
@@ -29,8 +29,12 @@ export default {
     }),
   },
   methods: {
+    ...mapMutations({
+      //相当于对store进行commit
+      close: "closeTag",
+    }),
     handleClose(tag) {
-      this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+      this.close(tag);
     },
   },
 };

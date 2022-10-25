@@ -35,7 +35,7 @@ export default {
   computed: {
     ...mapState({
       //router分模块后，用箭头函数引用
-      currentMenuItem: (state) => state.tab.currentMenu,
+      currentMenuItem: (state) => state.tag.currentMenu,
     }),
   },
 };
