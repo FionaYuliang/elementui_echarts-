@@ -1,12 +1,16 @@
 export default {
   state: {
     menu: [],
-    currentMenu: {},
+    currentMenu: null,
   },
   getters: {},
   mutations: {
     selectMenu(state, value) {
-      state.currentMenu = value;
+      if (value.name !== "home") {
+        state.currentMenu = value;
+      } else {
+        state.currentMenu = null;
+      }
     },
   },
   action: {},

@@ -34,6 +34,7 @@ export default {
   },
   computed: {
     ...mapState({
+      //router分模块后，用箭头函数引用
       currentMenuItem: (state) => state.tab.currentMenu,
     }),
   },
@@ -66,12 +67,12 @@ header {
 <style lang="scss">
 .el-breadcrumb__item {
   .el-breadcrumb__inner {
-    color: #666666;
+    color: #ffffff;
     font-weight: normal;
   }
   &:last-child {
     .el-breadcrumb__inner {
-      color: #ffffff;
+      color: #f4f4f4;
     }
   }
 }
