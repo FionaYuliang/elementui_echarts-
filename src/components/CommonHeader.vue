@@ -1,9 +1,49 @@
 <template>
-  <div></div>
+  <header>
+    <div class="left-content">
+      <el-button type="primary" size="mini" icon="el-icon-menu"></el-button>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+    <div class="right-content">
+      <el-dropdown trigger="click" size="mini">
+        <span class="el-dropdown-link">
+          <img src="../assets/images/user.png" class="user-avatar"
+        /></span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>个人中心</el-dropdown-item>
+          <el-dropdown-item>退出</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
+  </header>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+header {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.left-content {
+  display: flex;
+  align-items: center;
+  .el-button {
+    margin-right: 20px;
+  }
+}
+.right-content {
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+  }
+}
+</style>

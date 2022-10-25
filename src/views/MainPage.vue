@@ -15,4 +15,8 @@ import CommonAside from "@/components/CommonAside.vue";
 export default { components: { CommonHeader, CommonAside } };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-header {
+  background-color: #333;
+}
+</style>

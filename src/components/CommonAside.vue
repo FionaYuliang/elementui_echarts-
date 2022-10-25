@@ -15,11 +15,7 @@
       <span slot="title">{{ item.label }}</span>
     </el-menu-item>
 
-    <el-submenu
-      :index="item.path"
-      v-for="(item, index) in hasChilren"
-      :key="index"
-    >
+    <el-submenu :index="index" v-for="(item, index) in hasChilren" :key="index">
       <template slot="title">
         <i :class="'el-icon-' + item.icon"></i>
         <span>{{ item.label }}</span>
