@@ -91,10 +91,16 @@ export default {
       ],
     };
   },
-  mounted() {
-    this.$http.get("/home/getData").then((res) => {
-      console.log(res.data);
-    });
+  methods: {
+    getTableData() {
+      this.$http.get("/home/getData").then((res) => {
+        console.log(res.data);
+      });
+    },
+  },
+  mounted() {},
+  created() {
+    this.getTableData();
   },
 };
 </script>
