@@ -25,12 +25,36 @@ export default {
     return {
       echarts: null,
       axisOption: {
+        legend: {
+          textStyle: {
+            color: "#333",
+          },
+        },
+        grid: {
+          left: "20%",
+        },
+        tooltip: {
+          trigger: "item",
+        },
         xAxis: {
           type: "category",
           data: [],
+          axisLine: {
+            lineStyle: {
+              color: "#333",
+            },
+          },
+          axisLabel: {
+            color: "#333",
+          },
         },
         yAxis: {
           type: "value",
+          axisLine: {
+            lineStyle: {
+              color: "#17b3a3",
+            },
+          },
         },
         series: [
           {
@@ -40,6 +64,18 @@ export default {
         ],
       },
       normalOption: {
+        tooltip: {
+          trigger: "item",
+        },
+        color: [
+          "#0f78f4",
+          "#dd536b",
+          "#9462e5",
+          "#a6a6a6",
+          "#e1bb22",
+          "#39c362",
+          "#3ed1cf",
+        ],
         series: [],
       },
     };
