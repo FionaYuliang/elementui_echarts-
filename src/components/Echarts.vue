@@ -6,7 +6,7 @@
 import echarts from "echarts";
 export default {
   props: {
-    chartData: {
+    chartsData: {
       type: Object,
       //这里用函数返回而不是用对象定义的原因是避免组件复用时互相影响
       default() {

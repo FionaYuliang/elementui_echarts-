@@ -47,14 +47,14 @@
         </el-card>
       </div>
       <el-card shadow="hover">
-        <Echarts style="height: 280px"></Echarts
+        <ECharts style="height: 280px" :chartsData="echartsData.order"></ECharts
       ></el-card>
       <div class="graph">
         <el-card shadow="hover" style="height: 260px"
-          ><Echarts style="height: 280px"></Echarts
+          ><ECharts style="height: 280px"></ECharts
         ></el-card>
         <el-card shadow="hover" style="height: 260px"
-          ><Echarts style="height: 280px"></Echarts
+          ><ECharts style="height: 280px"></ECharts
         ></el-card>
       </div>
     </el-col>
@@ -62,8 +62,9 @@
 </template>
 
 <script>
-import Echarts from "../components/Echarts";
+import ECharts from "../components/ECharts.vue";
 export default {
+  comments: { ECharts },
   data() {
     return {
       userAvatar: require("../assets/images/user.png"),
@@ -112,7 +113,7 @@ export default {
         monthBuy: "本月购买",
         todayBuy: "总购买",
       },
-      echartData: {
+      echartsData: {
         order: {
           xData: [],
           series: [],
@@ -132,7 +133,25 @@ export default {
       this.$http.get("/home/getData").then((res) => {
         res = res.data.data;
         this.tableData = res.tableData;
+        //订单折线图
         const order = res.orderData;
+        //订单折线图的横坐标数据是日期
+        this.echartsData.order.xData = order.date;
+        //第一步：取出series中的name部分也就是键名
+        let keyArray = Object.keys(order.data[0]);
+        // console.log(keyArray);
+        //第二步：循环给series添加数据
+        keyArray.forEach((key) => {
+          this.echartsData.order.series.push({
+            name: key,
+            data: order.data.map((item) => item[key]),
+            type: "line",
+          });
+        });
+
+        //用户柱状图
+
+        //视频饼状图
       });
     },
   },
