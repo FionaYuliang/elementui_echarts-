@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%" ref="eharts">echarts</div>
+  <div style="height: 100%" ref="echarts">echarts</div>
 </template>
 
 <script>
@@ -49,16 +49,32 @@ export default {
       return this.isAxisCharts ? this.axisOption : this.normalOption;
     },
   },
+  watch: {
+    chartsData: {
+      handler: function () {
+        this.initCharts;
+      },
+      deep: true,
+    },
+  },
   methods: {
-    initCharts() {
-      if (this.echarts) {
-        this.echarts.setOption(this.options);
+    initChart() {
+      this.initChartData();
+      if (this.echart) {
+        this.echart.setOption(this.options);
       } else {
-        this.echarts = echarts.init(this.$refs.echarts);
-        this.echarts.setOption(this.options);
+        this.echart = echarts.init(this.$refs.echart);
+        this.echart.setOption(this.options);
       }
     },
-    initChartsData() {},
+    initChartData() {
+      if (this.isAxisChart) {
+        this.axisOption.xAxis.data = this.chartData.xData;
+        this.axisOption.series = this.chartData.series;
+      } else {
+        this.normalOption.series = this.chartData.series;
+      }
+    },
   },
 };
 </script>

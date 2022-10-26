@@ -47,15 +47,25 @@
         </el-card>
       </div>
       <el-card shadow="hover">
-        <ECharts style="height: 280px" :chartsData="echartsData.order"></ECharts
-      ></el-card>
+        <ECharts
+          style="height: 280px"
+          :chartsData="echartsData.order"
+        ></ECharts>
+      </el-card>
       <div class="graph">
-        <el-card shadow="hover" style="height: 260px"
-          ><ECharts style="height: 280px"></ECharts
-        ></el-card>
-        <el-card shadow="hover" style="height: 260px"
-          ><ECharts style="height: 280px"></ECharts
-        ></el-card>
+        <el-card shadow="hover">
+          <ECharts
+            :chartsData="echartsData.user"
+            style="height: 260px"
+          ></ECharts>
+        </el-card>
+        <el-card shadow="hover">
+          <ECharts
+            :chartsData="echartsData.video"
+            style="height: 260px"
+            :isAxisChart="false"
+          ></ECharts>
+        </el-card>
       </div>
     </el-col>
   </el-row>
@@ -64,7 +74,7 @@
 <script>
 import ECharts from "../components/ECharts.vue";
 export default {
-  comments: { ECharts },
+  components: { ECharts },
   data() {
     return {
       userAvatar: require("../assets/images/user.png"),
@@ -133,7 +143,7 @@ export default {
       this.$http.get("/home/getData").then((res) => {
         res = res.data.data;
         this.tableData = res.tableData;
-        //订单折线图
+        //1,订单折线图
         const order = res.orderData;
         //订单折线图的横坐标数据是日期
         this.echartsData.order.xData = order.date;
@@ -150,8 +160,23 @@ export default {
         });
 
         //用户柱状图
+        this.echartsData.user.xData = res.userData.map((item) => item.date);
+        this.echartsData.user.series.push({
+          name: "新增用户",
+          data: res.userData.map((item) => item.new),
+          type: "bar",
+        });
+        this.echartsData.user.series.push({
+          name: "活跃用户",
+          data: res.userData.map((item) => item.active),
+          type: "barGap",
+        });
 
         //视频饼状图
+        this.echartsData.video.series.push({
+          data: res.videoData,
+          type: "pie",
+        });
       });
     },
   },
