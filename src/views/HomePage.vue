@@ -14,9 +14,18 @@
           <p>上次登录地点：<span>北京市海淀区</span></p>
         </div>
       </el-card>
-      <el-card shadow="hover" style="height: 522px; margin-top: 20px"
-        >section 2</el-card
-      >
+      <el-card shadow="hover" style="height: 522px; margin-top: 20px">
+        <el-table :data="tableData" style="width: 100%">
+          <el-table-column
+            v-for="(value, key) in tableLabel"
+            show-overflow-tooltip
+            :key="key"
+            :prop="key"
+            :label="value"
+          >
+          </el-table-column>
+        </el-table>
+      </el-card>
     </el-col>
     <el-col :span="16">
       <div class="num">
@@ -89,12 +98,19 @@ export default {
           color: "#5ab1ef",
         },
       ],
+      tableData: [],
+      tableLabel: {
+        name: "课程名称",
+        totalBuy: "今日购买",
+        monthBuy: "本月购买",
+        todayBuy: "总购买",
+      },
     };
   },
   methods: {
     getTableData() {
       this.$http.get("/home/getData").then((res) => {
-        console.log(res.data);
+        this.tableData = res.data.data.tableData;
       });
     },
   },
