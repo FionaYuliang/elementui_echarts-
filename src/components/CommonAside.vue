@@ -7,6 +7,8 @@
     active-text-color="#ffd04b"
     :collapse="isCollapse"
   >
+    <h3 v-show="isCollapse">学堂在线</h3>
+    <h3 v-show="!isCollapse">学堂在线后台管理系统</h3>
     <el-menu-item
       :index="item.path"
       v-for="item in noChildren"
@@ -17,7 +19,11 @@
       <span slot="title">{{ item.label }}</span>
     </el-menu-item>
 
-    <el-submenu :index="index" v-for="(item, index) in hasChilren" :key="index">
+    <el-submenu
+      :index="item.path"
+      v-for="(item, index) in hasChilren"
+      :key="index"
+    >
       <template slot="title">
         <i :class="'el-icon-' + item.icon"></i>
         <span>{{ item.label }}</span>

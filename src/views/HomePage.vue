@@ -170,6 +170,7 @@ export default {
           name: "活跃用户",
           data: res.userData.map((item) => item.active),
           type: "barGap",
+          barGap: 0,
         });
 
         //视频饼状图
