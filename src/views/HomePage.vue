@@ -46,16 +46,23 @@
           </div>
         </el-card>
       </div>
-      <el-card shadow="hover" style="height: 280px"> </el-card>
+      <el-card shadow="hover">
+        <Echarts style="height: 280px"></Echarts
+      ></el-card>
       <div class="graph">
-        <el-card shadow="hover" style="height: 260px"></el-card>
-        <el-card shadow="hover" style="height: 260px"></el-card>
+        <el-card shadow="hover" style="height: 260px"
+          ><Echarts style="height: 280px"></Echarts
+        ></el-card>
+        <el-card shadow="hover" style="height: 260px"
+          ><Echarts style="height: 280px"></Echarts
+        ></el-card>
       </div>
     </el-col>
   </el-row>
 </template>
 
 <script>
+import Echarts from "../components/Echarts";
 export default {
   data() {
     return {
@@ -105,12 +112,27 @@ export default {
         monthBuy: "本月购买",
         todayBuy: "总购买",
       },
+      echartData: {
+        order: {
+          xData: [],
+          series: [],
+        },
+        user: {
+          xData: [],
+          series: [],
+        },
+        video: {
+          series: [],
+        },
+      },
     };
   },
   methods: {
     getTableData() {
       this.$http.get("/home/getData").then((res) => {
-        this.tableData = res.data.data.tableData;
+        res = res.data.data;
+        this.tableData = res.tableData;
+        const order = res.orderData;
       });
     },
   },
