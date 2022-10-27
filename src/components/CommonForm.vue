@@ -1,5 +1,5 @@
 <template>
-  <el-form :inline="inline" :model="form" ref="form" class="demo-form-inline">
+  <el-form :inline="inline" :model="form" ref="form" label-width="100px">
     <el-form-item
       v-for="item in formLabel"
       :key="item.model"
@@ -7,35 +7,28 @@
     >
       <el-input
         v-model="input"
-        placeholder="请输入内容"
-        v-if="item.model === 'input'"
+        :placeholder="'请输入' + item.label"
+        v-if="!item.type"
       ></el-input>
       <el-select
         v-model="select"
         placeholder="请选择"
-        v-if="item.model === 'select'"
+        v-if="item.type === 'select'"
       >
         <el-option
           v-for="item in item.options"
           :key="item.value"
           :label="item.label"
           :value="item.value"
-        >
-        </el-option>
+        ></el-option>
       </el-select>
-      <el-switch
-        v-model="value"
-        active-color="#13ce66"
-        inactive-color="#ff4949"
-        v-if="item.model === 'switch'"
-      >
-      </el-switch>
+      <el-switch v-model="value" v-if="item.type === 'switch'"></el-switch>
       <el-date-picker
-        v-model="value1"
+        v-model="value"
         type="date"
         placeholder="选择日期"
+        v-if="item.type === 'date'"
         value-format="yyyy-MM-dd"
-        v-if="item.model === 'date'"
       >
       </el-date-picker>
     </el-form-item>

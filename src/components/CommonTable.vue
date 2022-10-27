@@ -26,15 +26,10 @@
           <span style="margin-left: 10px">{{ scope.row[item.prop] }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" min-width="180">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
-            >编辑</el-button
-          >
-          <el-button
-            size="mini"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
+          <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row)"
             >删除</el-button
           >
         </template>
@@ -45,6 +40,7 @@
       layout="prev, pager, next"
       :total="config.total"
       :current-page="config.page"
+      @current-change="changePage"
       :page-size="20"
     >
     </el-pagination>
@@ -60,10 +56,13 @@ export default {
   },
   methods: {
     handleEdit(index, row) {
-      console.log(index, row);
+      this.$emit("edit", row);
     },
     handleDelete(index, row) {
-      console.log(index, row);
+      this.$emit("del", row);
+    },
+    changePage(page) {
+      this.$emit("changePage", page);
     },
   },
 };
