@@ -1,12 +1,16 @@
 <template>
   <div class="manage">
     <div class="manage-header">
-      <common-form :formLabel="formLabel" :form="searchFrom">
+      <el-button type="primary">+ 新增</el-button>
+      <common-form inline :formLabel="formLabel" :form="searchFrom">
         <el-button type="primary">搜索</el-button>
       </common-form>
     </div>
 
-    <common-table></common-table>
+    <common-table
+      :tableData="tableData"
+      :tableLabel="tableLabel"
+    ></common-table>
   </div>
 </template>
 
@@ -18,13 +22,38 @@ export default {
   components: { CommonForm, CommonTable },
   data() {
     return {
+      tableData: [],
+      tableLabel: [
+        {
+          prop: "name",
+          label: "姓名",
+        },
+        {
+          prop: "age",
+          label: "年龄",
+        },
+        {
+          prop: "sex",
+          label: "性别",
+        },
+        {
+          prop: "birth",
+          label: "出生日期",
+          width: 200,
+        },
+        {
+          prop: "addr",
+          label: "地址",
+          width: 320,
+        },
+      ],
       searchForm: {
         keyword: "",
       },
       formLabel: [
         {
-          model: "keyword",
-          label: "关键词",
+          model: "input",
+          label: "",
         },
       ],
     };
@@ -32,4 +61,15 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.manage {
+  height: 90%;
+  padding-bottom: 20px;
+  overflow: hidden;
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+</style>
