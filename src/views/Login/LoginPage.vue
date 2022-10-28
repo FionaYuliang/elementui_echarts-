@@ -7,7 +7,7 @@
       <el-form-item label="密码">
         <el-input v-model="form.password" placeholder="请输入密码"></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item aligin="center">
         <el-button type="primary" @click="login">登录</el-button>
       </el-form-item>
     </el-form>
@@ -25,7 +25,16 @@ export default {
     };
   },
   methods: {
-    login() {},
+    login() {
+      this.$http.post("/api/permission/getMenu", this.form).then((res) => {
+        res = res.data;
+        if (res.code === 20000) {
+          this.$router.push({ name: "home" });
+        } else {
+          this.$message.warning(res.data.message);
+        }
+      });
+    },
   },
 };
 </script>
