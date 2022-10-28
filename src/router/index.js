@@ -9,37 +9,6 @@ const routes = [
     name: "login",
     component: () => import("@/views/Login/LoginPage"),
   },
-  {
-    path: "/",
-    component: () => import("@/views/MainPage"),
-    children: [
-      {
-        path: "/",
-        name: "home",
-        component: () => import("@/views/HomePage"),
-      },
-      {
-        path: "/user",
-        name: "user",
-        component: () => import("@/views/UserManage/UserManage"),
-      },
-      {
-        path: "/video",
-        name: "video",
-        component: () => import("@/views/VideoManage/VideoManage"),
-      },
-      {
-        path: "/page1",
-        name: "page1",
-        component: () => import("@/views/Other/PageOne"),
-      },
-      {
-        path: "/page2",
-        name: "page2",
-        component: () => import("@/views/Other/PageTwo"),
-      },
-    ],
-  },
 ];
 
 const router = new VueRouter({

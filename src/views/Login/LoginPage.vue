@@ -5,7 +5,11 @@
         <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="form.password" placeholder="请输入密码"></el-input>
+        <el-input
+          type="password"
+          v-model="form.password"
+          placeholder="请输入密码"
+        ></el-input>
       </el-form-item>
       <el-form-item aligin="center">
         <el-button type="primary" @click="login">登录</el-button>
@@ -26,7 +30,7 @@ export default {
   },
   methods: {
     login() {
-      this.$http.post("/api/permission/getMenu", this.form).then((res) => {
+      this.$http.post("api/permission/getMenu", this.form).then((res) => {
         res = res.data;
         if (res.code === 20000) {
           this.$router.push({ name: "home" });

@@ -1,3 +1,4 @@
+import Cookie from "js-cookie";
 export default {
   state: {
     isCollapse: true,
@@ -14,6 +15,14 @@ export default {
   },
   getters: {},
   mutations: {
+    setMenu(state, value) {
+      state.menu = value;
+      Cookie.set("menu", JSON.stringify(value));
+    },
+    clearMenu(state) {
+      state.menu = [];
+      Cookie.remove("menu");
+    },
     selectMenu(state, value) {
       if (value.name !== "home") {
         state.currentMenu = value;

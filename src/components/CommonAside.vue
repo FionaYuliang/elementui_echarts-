@@ -47,13 +47,16 @@
 export default {
   computed: {
     noChildren() {
-      return this.asideMenu.filter((item) => !item.children);
+      return this.meun.filter((item) => !item.children);
     },
     hasChilren() {
-      return this.asideMenu.filter((item) => item.children);
+      return this.meun.filter((item) => item.children);
     },
     isCollapse() {
       return this.$store.state.tag.isCollapse;
+    },
+    meun() {
+      return this.$store.state.tab.menu;
     },
   },
   data() {
