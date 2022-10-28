@@ -33,6 +33,10 @@ export default {
       this.$http.post("api/permission/getMenu", this.form).then((res) => {
         res = res.data;
         if (res.code === 20000) {
+          this.$store.commit("clearMenu");
+          this.$store.commit("selectMenu", res.data.menu);
+          this.$store.commit("setToken", res.data.token);
+          this.$store.commit("addMenu", this.$router);
           this.$router.push({ name: "home" });
         } else {
           this.$message.warning(res.data.message);

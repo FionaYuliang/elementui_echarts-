@@ -23,6 +23,33 @@ export default {
       state.menu = [];
       Cookie.remove("menu");
     },
+    addMenu(state, router) {
+      if (!Cookie.get("menu")) {
+        return;
+      }
+      let menu = JSON.parse(Cookie.get("menu"));
+      state.menu = menu;
+      let currentMenu = [
+        {
+          path: "/",
+          component: () => import(`@views/MainPage`),
+          children: [],
+        },
+      ];
+      menu.forEach((item) => {
+        if (item.children) {
+          item.children = item.children.map((item) => {
+            item.component = () => import(`@views/${item.url}`);
+            return item;
+          });
+          currentMenu[0].children.push(...item.children);
+        } else {
+          item.component = () => import(`@views/${item.url}`);
+          currentMenu[0].children.push(SidebarItem);
+        }
+      });
+      router.addRoutes(currentMenu);
+    },
     selectMenu(state, value) {
       if (value.name !== "home") {
         state.currentMenu = value;
