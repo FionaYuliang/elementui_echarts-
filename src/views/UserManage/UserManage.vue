@@ -1,7 +1,7 @@
 <template>
   <div class="manage">
     <el-dialog
-      title="更新用户"
+      :title="operateType === 'add' ? '新增用户' : '更新用户'"
       :visible.sync="dialogVisible"
       width="30%"
       :before-close="handleClose"
@@ -11,13 +11,13 @@
         :formLabel="operationFormLabel"
         :form="operateForm"
       ></common-form>
-      <span slot="footer" class="dialog-footer">
+      <div slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="confirm">确 定</el-button>
-      </span>
+      </div>
     </el-dialog>
     <div class="manage-header">
-      <el-button type="primary">+ 新增</el-button>
+      <el-button type="primary" @click="addUser">+ 新增</el-button>
       <common-form inline :formLabel="formLabel" :form="searchFrom">
         <el-button type="primary">搜索</el-button>
       </common-form>
@@ -151,6 +151,11 @@ export default {
     },
     changePage(value) {
       console.log(value);
+    },
+    addUser() {
+      this.operateForm = {};
+      this.operateType = "add";
+      this.isShow = true;
     },
     editUser(row) {
       this.operateType = "edit";
