@@ -32,20 +32,20 @@ export default {
       let currentMenu = [
         {
           path: "/",
-          component: () => import(`@views/MainPage`),
+          // component: () => import(`@/views/MainPage`),
           children: [],
         },
       ];
       menu.forEach((item) => {
         if (item.children) {
           item.children = item.children.map((item) => {
-            item.component = () => import(`@views/${item.url}`);
+            // item.component = () => import(`@views/${item.url}`);
             return item;
           });
           currentMenu[0].children.push(...item.children);
         } else {
-          item.component = () => import(`@views/${item.url}`);
-          currentMenu[0].children.push(SidebarItem);
+          // item.component = () => import(`@views/${item.url}`);
+          currentMenu[0].children.push(item);
         }
       });
       router.addRoutes(currentMenu);
