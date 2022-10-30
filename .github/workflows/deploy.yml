@@ -26,6 +26,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }} # 手工生成一对公钥私钥
           # external_repository: FionaYuliang/elementui_echarts_vue2
           publish_branch: gh-pages
-          publish_dir: ./public
+          publish_dir: ./dist
 
           
